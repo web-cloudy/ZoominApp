@@ -1,0 +1,40 @@
+@font-face{font-family:proxima_nova_altblack;src:url('Proxima Nova Alt Black.eot');src:url('Proxima Nova Alt Black.eot?#iefix') format('embedded-opentype'),url('Proxima Nova Alt Black.woff2') format('woff2'),url('Proxima Nova Alt Black.woff') format('woff'),url('Proxima Nova Alt Black.ttf') format('truetype'),url('Proxima Nova Alt Black.svg#proxima_nova_altblack') format('svg');font-weight:400;font-style:normal}
+
+@font-face{font-family:proxima_nova_altbold;src:url('Proxima Nova Bold.eot');src:url('Proxima Nova Bold.eot?#iefix') format('embedded-opentype'),url('Proxima Nova Bold.woff2') format('woff2'),url('Proxima Nova Bold.woff') format('woff'),url('Proxima Nova Bold.ttf') format('truetype'),url('Proxima Nova Bold.svg#proxima_nova_altbold') format('svg');font-weight:400;font-style:normal}
+
+@font-face{font-family:'Proxima Nova';src:url('Proxima-Nova-Regular.eot');src:url('Proxima-Nova-Regular.eot?#iefix') format('embedded-opentype'),url('Proxima-Nova-Regular.woff') format('woff'),url('Proxima-Nova-Regular.ttf') format('truetype'),url('Proxima-Nova-Regular.svg#proxima_nova_altregular') format('svg');}
+
+@font-face{font-family:'Proxima Nova Alt Light';src:url('Proxima Nova Alt Light.otf');src:url('Proxima Nova Alt Light.otf') format("opentype");}
+@font-face{font-family:'Proxima Nova Extrabold';src:url('Proxima Nova Extrabold.otf');font-weight:400;font-style:normal}
+
+@font-face {
+    font-family: 'proxima_nova_ltthin';
+    src: url('Proxima Nova Thin.eot');
+    src: url('Proxima Nova Thin.eot?#iefix') format('embedded-opentype'),
+         url('Proxima Nova Thin.woff2') format('woff2'),
+         url('Proxima Nova Thin.woff') format('woff'),
+         url('Proxima Nova Thin.ttf') format('truetype'),
+         url('Proxima Nova Thin.svg#proxima_nova_ltthin') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'Tryst-Regular';
+    src: url("Tryst-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'OpenSansHebrew-Regular';
+	src:url('OpenSansHebrew-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'OpenSansHebrew-Light';
+    src: url('OpenSansHebrew-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'OpenSansHebrew-Bold';
+    src: url('OpenSansHebrew-Bold.ttf') format('truetype');
+}

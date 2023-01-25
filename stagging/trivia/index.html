@@ -1,0 +1,312 @@
+<html><head xmlns="http://www.w3.org/1999/xhtml">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi">
+        <title>Trivia</title>
+      	<link rel="icon" type="image/png" href="favicon.png" sizes="32x32">
+    	<link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+        <link href="css/animate.min.css" rel="stylesheet type=" text="">
+        <link href="css/material-design-iconic-font.min.css" type="text/css" rel="stylesheet">
+        <link href="css/lightGallery.css" rel="stylesheet" type="text/css">
+       	<link href="css/slick.css" rel="stylesheet">
+        <link href="css/slick-theme.css" rel="stylesheet">
+        <link href="fonts1/fonts.min.css" type="text/css" rel="stylesheet">
+       	<link href="css/app.min.1.css" rel="stylesheet" type="text/css">
+        <link href="css/app.min.2.css" rel="stylesheet" type="text/css">
+  <style>
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,600&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Inter:400,500,600&display=swap");
+body{ font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    line-height: 1.6rem;
+    letter-spacing: .004em;
+    color: #FFFFFF;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #16012D;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale}
+.divider span {
+    display: table-cell;
+    position: relative;
+}
+
+.divider span:first-child,
+.divider span:last-child {
+    width: 50%;
+    top: 8px;
+    /* adjust vertical align */
+    -moz-background-size: 100% 2px;
+    /* line width */
+    background-size: 100% 2px;
+    /* line width */
+    background-position: 0 0, 0 100%;
+    background-repeat: no-repeat;
+}
+
+.divider span:first-child {
+    /* color changes in here */
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(#fff));
+    background-image: -webkit-linear-gradient(180deg, transparent, #fff);
+    background-image: -moz-linear-gradient(180deg, transparent, #fff);
+    background-image: -o-linear-gradient(180deg, transparent, #fff);
+    background-image: linear-gradient(90deg, transparent, #fff);
+}
+
+.divider span:nth-child(2) {
+    color: #283477;
+    padding: 0px 5px;
+    width: auto;
+    white-space: nowrap;
+}
+
+.divider span:last-child {
+    /* color changes in here */
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(transparent));
+    background-image: -webkit-linear-gradient(180deg, #fff, transparent);
+    background-image: -moz-linear-gradient(180deg, #fff, transparent);
+    background-image: -o-linear-gradient(180deg, #fff, transparent);
+    background-image: linear-gradient(90deg, #fff, transparent);
+}
+    
+.form-check {
+    padding: 0;
+    margin: 0;
+    min-height: auto;
+    height: auto
+}
+
+.form-check .form-check-input {
+    display: none
+}
+
+.form-check .form-check-label {
+    cursor: pointer;
+    position: relative;
+    min-height: 20px;
+    padding: 0px 0 0 32px;
+    line-height: 1.7em;
+    color: #fff
+}
+
+.form-check .form-check-label:after {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    content: "";
+    display: block;
+    width: 22px;
+    height: 22px;
+    background: transparent;
+    border-radius: 2px;
+    border: 1px solid #DCDCE9
+}
+
+.form-check .form-check-label:before {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    left: 0;
+    top: 10px;
+    z-index: 3;
+    opacity: 0;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e")
+}
+
+.form-check-input[type="radio"]~.form-check-label:before {
+    background-image: url("data:image/svg+xml,%0A%3Csvg width='8px' height='8px' viewBox='0 0 8 8' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Ccircle id='Oval' fill='%23FFFFFF' cx='4' cy='4' r='4'%3E%3C/circle%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center center
+}
+
+.form-check-input:checked~.form-check-label:after {
+    background-color: #221343;
+    border-color: #fff !important
+}
+
+.form-check-input:checked~.form-check-label:before {
+    opacity: 1
+}
+
+.form-check-inline {
+    margin-right: 0
+}
+
+.form-check-inline .form-check-label {
+    margin-bottom: -3px;
+    padding-left: 24px
+}
+
+.input-list .form-check:after {
+    content: "";
+    height: 1px;
+    background: #DCDCE9;
+    display: block;
+    margin-left: 54px
+}
+
+.input-list .form-check .form-check-label {
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.1s all;
+    padding: 6px 16px 6px 54px
+}
+
+.input-list .form-check .form-check-label:before,
+.input-list .form-check .form-check-label:after {
+    left: 16px;
+    top: 14px
+}
+
+.input-list .form-check .form-check-label:active {
+    background: rgba(220, 220, 233, 0.3)
+}
+
+.input-list .form-check:last-child:after {
+    height: 0
+}
+
+.form-switch {
+    height: 30px
+}
+
+.form-switch .form-check-label {
+    width: 56px;
+    height: 30px;
+    padding: 0;
+    margin: 0
+}
+
+.form-switch .form-check-label:after {
+    height: 30px;
+    width: 56px;
+    background: #DCDCE9;
+    border: 1px solid #ccccdf;
+    transition: .1s linear
+}
+
+.form-switch .form-check-label:before {
+    opacity: 1;
+    border-radius: 100px;
+    width: 24px;
+    height: 24px;
+    top: 3px;
+    left: 4px;
+    background: #ffffff;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+    transition: .15s ease-in-out
+}
+
+.form-switch .form-check-input:checked~.form-check-label:before {
+    left: 28px
+}
+.inter-font {
+    font-family: 'Inter';
+}
+.btn-app-gradient {
+    color: #fff;
+    border: 0px;
+    box-shadow: 0px 3px 5px 0px #0000005c!important;
+    background: #FF0676;
+    border-radius: 16px;
+}
+  </style>
+    </head>
+    <body style="padding:0;background-image:url('bg.png');background-repeat: no-repeat;background-size: cover;background-color: #16012D;">
+      <div class="col-lg-4 col-md-4 pull-left"></div>
+      <div class="col-lg-4 col-md-4 pull-left col-xs-12">
+        <div class="w-100 pull-left text-center m-t-20 m-b-20"><img style="max-width:200px" src="logo.png"></div>
+        <div class="m-t-20 divider pull-left card-title m-b-20 text-center"><span></span><span class="bold" style="font-size: 25px;color: white;">TRIVIA</span><span></span></div>
+        <div class="w-100 ques pull-left">
+          
+        </div>
+        <input type="hidden" id="answer">
+        <div class="col-lg-12 b-radius-6 p-b-10 text-center p-0 m-t-10">
+          <div class="col-lg-12 p-10 m-t-20" style="text-align: center;float: left;width: 100%;">
+            <button  class="btn btn-block btn-app-gradient bold inter-font" onclick="submit_ans()" id="save" style="float: none;height:40px">Submit</button>
+          </div>
+        </div>
+     </div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+ function set_answer(ans)
+{
+  $('#answer').val(ans)
+  //$('.ans_text').removeClass('border-black-2');
+  //$('.answer'+$('#answer').val()+' .ans_text').addClass('border-black-2');
+}
+get_question()
+function get_question()
+{
+  let searchParams = new URLSearchParams(window.location.search)
+  trivia_id = searchParams.get('trivia_id')
+  $.ajax({
+		type: "POST",
+  		async: true,
+		url : 'https://saviour.earth/ZoomIn/trivia/new_ajax/c_experience.php',
+		data : 'req=2&id='+$('#id').val()+'&trivia_id='+trivia_id,
+		success: function(html)
+		{
+  			$('#save').html('Submit').attr('disabled',false)
+  			$('#answer').val('')
+  			if(html=='No questions added' || html=='Thank you for playing')
+            {
+  				$('#save').remove()
+  				$('.ques').html('<span style="text-align:center;width: 100%;float: left;font-weight: 500;">'+html+'</span>')
+            }
+  			else
+  			{
+  				$('.ques').html(html)
+  			}
+  		}
+  });
+}
+function submit_ans()
+{
+  if($('#answer').val()=='')
+  {
+  	alert("please select one of them")
+  }
+  else
+  {
+  	$('#save').html('please wait...').attr('disabled',true)
+  	$.ajax({
+		type: "POST",
+  		async: true,
+		url : 'https://saviour.earth/ZoomIn/trivia/new_ajax/c_experience.php',
+		data : 'req=1&id='+$('#id').val(),
+		success: function(html)
+		{
+  			if($('#answer').val()==html.trim())
+  			{
+              $('.answer'+$('#answer').val()+' .ans_text').addClass('border-success-color border-black-2');
+              $('.answer'+$('#answer').val()).append('<i class="zmdi zmdi-check text-success font20  absolute top0 right10 line-height40"></i>')
+  			}
+  			else
+            {
+  				$('.answer'+html.trim()+' .ans_text').addClass('border-success-color border-black-2');
+              	$('.answer'+html.trim()).append('<i class="zmdi zmdi-check text-success font20  absolute top0 right10 line-height40"></i>')
+                $('.answer'+$('#answer').val()+' .ans_text').addClass('border-danger-color border-black-2');
+                $('.answer'+$('#answer').val()).append('<i class="zmdi zmdi-close text-danger font20  absolute top0 right10 line-height40"></i>')
+            }
+  			setTimeout(function(){
+  				get_question()
+  			},2000)
+  		}
+  	});
+  }
+}
+
+      </script>
+</body></html>
+<style>
+ .border-danger-color{border: 2px solid #f44336!important;}
+</style>

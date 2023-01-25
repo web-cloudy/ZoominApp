@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>ZoomIn BASKETBALL</title>
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="css/reset.css" type="text/css">
+        <link rel="stylesheet" href="css/main.css" type="text/css">
+        <link rel="stylesheet" href="css/orientation_utils.css" type="text/css">
+        <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.png' />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
+        <meta name="msapplication-tap-highlight" content="no"/>
+
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="js/easeljs-NEXT.min.js"></script>
+        <script type="text/javascript" src="js/howler.min.js"></script>
+        <script type="text/javascript" src="js/circular-countdown.js"></script>
+        <script src="assets/js/lib/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/base.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        
+    </head>
+    
+    <body ondragstart="return false;" ondrop="return false;" >
+        <div id="bg" style="position: fixed; background:linear-gradient(to bottom,#F8F8F8 50%,#f8f8f8 100%); top: 0px; left: 0px; width: 100%; height: 100%"></div>
+        <div class="time_bottom hidden" style="
+        position: absolute;
+        z-index: 100000;
+        right: 35px;
+        height: 30px;
+        bottom: 12px;
+        line-height: 30px;
+        ">
+            <div class="digital digital_timer" style="float: left;font-size: 35px;color: #fff;">0:59</div>
+            <div class="timer" style="float: left;    height: 30px;"></div>
+        </div>
+        <script>
+            check_session()
+            addEventPlayer()
+            if(localStorage.getItem("audio")== null)
+            {
+                localStorage.setItem("audio",true)
+            }
+            $(document).ready(function () {
+                var oMain = new CMain({
+                    player_lives: 300,
+                    Stright_sec:30,
+                    show_ball:1,
+                    ball_points: 1,
+                    star_bonus_points: 5,
+                    bonus_no_collision: 2,
+                    bonus_multiplier: 2,
+                    random_ball_start_limit: 5,
+                    random_bonus_occurrency: 30,
+                    board_horizontal_movement_limit: 30,
+                    board_vertical_movement_limit: 51,
+                    fullscreen: true,
+                    check_orientation: true,
+                    audio_enable_on_startup: false
+                });
+
+                $(oMain).on("start_session", function (evt) {
+                    if (getParamValue('ctl-arcade') === "true") {
+                        parent.__ctlArcadeStartSession();
+                    }
+                });
+
+                $(oMain).on("end_session", function (evt) {
+                    if (getParamValue('ctl-arcade') === "true") {
+                        parent.__ctlArcadeEndSession();
+                    }
+                });
+
+                $(oMain).on("restart_level", function (evt, iLevel) {
+                    if (getParamValue('ctl-arcade') === "true") {
+                        parent.__ctlArcadeRestartLevel({level: iLevel});
+                    }
+                });
+
+                $(oMain).on("save_score", function (evt, iScore) {
+                    if (getParamValue('ctl-arcade') === "true") {
+                        parent.__ctlArcadeSaveScore({score: iScore});
+                    }
+                });
+
+                $(oMain).on("show_interlevel_ad", function (evt) {
+                    if (getParamValue('ctl-arcade') === "true") {
+                        parent.__ctlArcadeShowInterlevelAD();
+                    }
+                });
+
+                $(oMain).on("share_event", function (evt, iScore) {
+                    if (getParamValue('ctl-arcade') === "true") {
+                        parent.__ctlArcadeShareEvent({img: TEXT_SHARE_IMAGE,
+                            title: TEXT_SHARE_TITLE,
+                            msg: TEXT_SHARE_MSG1 + iScore
+                                    + TEXT_SHARE_MSG2,
+                            msg_share: TEXT_SHARE_SHARE1
+                                    + iScore + TEXT_SHARE_SHARE1});
+                    }
+                });
+
+                if (isIOS()) {
+                    setTimeout(function () {
+                        sizeHandler();
+                    }, 200);
+                } else {
+                    sizeHandler();
+                }
+            });
+
+        </script>
+        
+        <canvas id="canvas" class='ani_hack' width="768" height="1400"> </canvas>
+        <div data-orientation="portrait" class="orientation-msg-container"><p class="orientation-msg-text">Please rotate your device</p></div>
+        <div id="block_game" style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%; display:none"></div>
+
+    </body>
+</html>

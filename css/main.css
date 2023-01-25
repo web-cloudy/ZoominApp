@@ -1,0 +1,87 @@
+root { 
+    display: block;
+}
+
+body{
+    background:linear-gradient(to bottom,#1dbad3 50%,#1d7dbe 100%)!important;
+    background-repeat: repeat-x;
+    background-position: top;
+}
+
+*, *:before, *:after {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+     
+input, input:before, input:after {
+    -webkit-user-select: initial;
+    -khtml-user-select: initial;
+    -moz-user-select: initial;
+    -ms-user-select: initial;
+    user-select: initial;
+} 
+
+::selection { background: transparent;color:inherit; }
+::-moz-selection { background: transparent;color:inherit; }
+
+#canvas{
+    position: fixed;
+}
+
+canvas{
+    image-rendering: optimizeSpeed;
+    image-rendering:-o-crisp-edges;
+    image-rendering:-webkit-optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+    -ms-touch-action: none;
+}
+
+.ani_hack{
+    -webkit-perspective: 1000;
+    -webkit-backface-visibility: hidden;
+    
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent; /* mobile webkit */
+}
+
+/***************FONTS*******************/
+@font-face {
+    font-family: 'comfortaa';
+    src: url('../fonts/comfortaa-bold-webfont.eot');
+    src: url('../fonts/comfortaa-bold-webfontd41d.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/comfortaa-bold-webfont.woff2') format('woff2'),
+         url('../fonts/comfortaa-bold-webfont.woff') format('woff'),
+         url('../fonts/comfortaa-bold-webfont.ttf') format('truetype'),
+         url('../fonts/comfortaa-bold-webfont.svg#comfortaa') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'digital';
+    src: url('../fonts/digital-i.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+.digital{font-family: 'digital' !important;}
+.hidden{display: none !important;}
+.check-fonts{
+    position: fixed;
+    opacity:0;
+}
+
+.check-font-1{
+    font-family: 'comfortaa';
+}
+/*counter*/
+#jquery-script-menu{position:absolute;height:90px;width:100%;top:0;left:0;border-top:5px solid #316594;background:#fff;-moz-box-shadow:0 2px 3px 0 rgba(0,0,0,.16);-webkit-box-shadow:0 2px 3px 0 rgba(0,0,0,.16);box-shadow:0 2px 3px 0 rgba(0,0,0,.16);z-index:999999;padding:10px 0;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}.jquery-script-center{max-width:960px;margin:0 auto}.jquery-script-center ul{width:212px;float:left;line-height:45px;margin:0;padding:0;list-style:none}.jquery-script-center a{text-decoration:none}.jquery-script-ads{max-width:728px;height:90px;float:right}.jquery-script-clear{clear:both;height:0}#carbonads{display:block;overflow:hidden;max-width:728px;position:relative;font-size:22px;box-sizing:content-box}#carbonads>span{display:block}#carbonads a{color:#4078c0;text-decoration:none}#carbonads a:hover{color:#3664a3}.carbon-wrap{display:flex;align-items:center}.carbon-img{display:block;margin:0;line-height:1}.carbon-img img{display:block;height:90px;width:auto}.carbon-text{display:block;padding:0 1em;line-height:1.35;text-align:left}.carbon-poweredby{display:block;position:absolute;bottom:0;right:0;padding:6px 10px;text-align:center;text-transform:uppercase;letter-spacing:.5px;font-weight:600;font-size:8px;border-top-left-radius:4px;line-height:1;color:#aaa!important}@media only screen and (min-width:320px) and (max-width:759px){.carbon-text{font-size:14px}}@media only screen and (max-width:1023px){.jquery-script-ads{display:none}}

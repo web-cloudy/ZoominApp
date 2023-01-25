@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    <title>ZoomIn</title>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png" sizes="32x32">
+    <link rel="shortcut icon" href="assets/img/favicon.png">
+</head>
+<body>
+
+    <!-- loader -->
+    <div id="appCapsule" style="padding:56px 0 0 0 ;">
+        <div class="col-md-4 m-auto">
+            <div class="section mt-2 text-center text-black">
+                <span class="" style="font-size:25px;line-height: 100px;"><img src="assets/img/logo.png" style="width:80%"></span>
+                <div class="mt-2 divider card-title text-center"><span></span><span class="" style="font-size: 25px;color: black;">Welcome</span><span></span></div>
+            </div>
+            <div class="section mb-0 p-2" id="login">
+                <span>
+                    <div class="card">
+                        <div class="card-body pb-1">
+                            <div class="form-group basic position-relative">
+                                <div class="input-wrapper">
+                                    <label class="label" for="email1">E-mail</label>
+                                    <input type="email" class="form-control" name="email" id="email1" placeholder="Your e-mail" data-required="yes" data-validation-required-message="This field is required">
+                                    <i class="clear-input">
+                                        <ion-icon name="close-circle"></ion-icon>
+                                    </i>
+                                </div>
+                            </div>
+
+                            <div class="form-group basic position-relative">
+                                <div class="input-wrapper">
+                                    <label class="label" for="password1">Password</label>
+                                    <input type="password" class="form-control" name="password" id="password1" autocomplete="off" placeholder="Your password" data-required="yes" data-validation-required-message="This field is required">
+                                    <i class="clear-input">
+                                        <ion-icon name="close-circle"></ion-icon>
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="text-right mt-2">
+                        <div><a href="forgot-password.html" style="color:#605b65" class="text-muted">Forgot Password?</a></div>
+                    </div>
+
+                    <div class="mt-2 transparent text-center">
+                        <button type="button" class="btn game_btn easy btn-app-gradient rounded btn-block btn-lg login-btn easy" onclick="validate('#login','login')">
+                            <span class="spinner-border spinner-border-lg d-none" role="status" aria-hidden="true"></span> 
+                            <span class="text">Log in</span>
+                        </button>
+                    </div>
+                    <div class="text-center mt-2 text-black">
+                        Or Sign Up with
+                    </div>
+                  	<div id="g_id_onload"
+     data-client_id="1017261403719-8oaf6n4e8fthp04bmfjbd5l692o8109c.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-callback="handleCredentialResponse"
+     data-auto_prompt="false">
+</div>
+
+                    <div class="divider mt-2 card-title text-center">
+                      	<span></span><span class="" style="position: relative;"><div style="position: absolute;left: 42px;top: -3px;opacity: 0;" class="g_id_signin" data-type="icon" data-shape="circle" data-theme="outline" data-text="signin" data-size="large"></div><div  style="position: absolute;right: 3px;top: -12px;width: 40px;overflow: hidden;height: 40px;opacity:0"><fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button></div><img onclick="window.location.href='register.html'" id="register" src="assets/img/mail.png" width="30" style="margin-right:10px;border-radius: 100%;"><img src="assets/img/google.png" onclick="Logingp()" width="30" style="margin-right:10px;border-radius: 100%;"><img src="assets/img/fb.png" width="30" onclick="Loginfb()" style="margin-right:10px;border-radius: 100%;"></span><span></span>
+                    </div>            
+                </span>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/lib/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/lib/popper.min.js"></script>
+    <script src="assets/js/lib/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <script src="assets/js/plugins/owl-carousel/owl.carousel.min.js"></script>
+    <script src="assets/js/base.js"></script>
+  	<script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
+	
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0&appId=1153499242175725&autoLogAppEvents=1" nonce="2V6gMiut"></script>
+
+</body>
+
+
+
+</html>
+<script>
+function Loginfb()
+{
+	if(detectandroid()==true)
+	{
+		Android.facebookLogin();
+	}
+	else if(detectios()==true)
+	{
+		window.location='facebooklogin:';
+	}
+    else
+    {
+
+    }
+}
+function Logingp()
+{
+	if(detectandroid()==true)
+	{
+		Android.gmailLogin();
+	}
+	else if(detectios()==true)
+	{
+		window.location='gmaillogin:';
+	}
+} 
+  
+ function handleCredentialResponse(response) {
+    const responsePayload = jwt_decode(response.credential);
+	var name = responsePayload.name;
+   	var image =responsePayload.picture;
+   	var email = responsePayload.email;
+   	signupsocial(email,name,image);
+  }
+</script>
+
+<script>
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+    console.log(response);  
+  	
+    if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+      testAPI();  
+    } else {                                 // Not logged into your webpage or we are unable to tell.
+      
+    }
+  }
+
+
+  function checkLoginState() {               // Called when a person is finished with the Login Button.
+    FB.getLoginStatus(function(response) {   // See the onlogin handler
+      statusChangeCallback(response);
+    });
+  }
+
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1153499242175725',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v15.0'
+    });
+
+
+    FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
+      statusChangeCallback(response);        // Returns the login status.
+    });
+  };
+ 
+  function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
+    FB.api('/me?fields=name,email,picture.width(150).height(150)', function(response) {
+  		var name = response.name;
+  	  	var image ='';
+  		/*if(response.picture.data!='undefined')
+  	  	{
+      		var image =response.picture.data.url;
+  	  	}
+  		else
+  		{
+  			var image ='';
+  		}*/
+      	var email = response.email;
+      	signupsocial(email,name,image);
+    });
+  	FB.logout(function(response) {
+   // Person is now logged out
+	});
+  }
+ let searchParams = new URLSearchParams(window.location.search)
+ event_id = searchParams.get('event_id')
+if(event_id!='')
+  {
+	$('#register').attr('onclick',"window.location.href='register.html?event_id="+event_id+"'")
+  }
+</script>

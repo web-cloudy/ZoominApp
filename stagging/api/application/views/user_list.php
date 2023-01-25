@@ -1,0 +1,10 @@
+<html>
+    <title>User</title>
+    <body>
+        <pre>
+        <?php
+        print_r($user);
+        ?>
+        </pre>
+    </body>
+</html>

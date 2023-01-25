@@ -1,0 +1,59 @@
+
+
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ZoomIn</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png" sizes="32x32">
+    <link rel="shortcut icon" href="assets/img/favicon.png">
+</head>
+
+<body>
+
+    <!-- loader -->
+    <div id="loader" style="background-color:#434c89 !important">
+        <div class="section mt-2 text-center  col-sm-4">
+            <span class="" style="font-size:25px;line-height: 100px;"><img src="assets/img/logo.png" style="width:80%"></span>
+        </div>
+    </div>
+    
+    <script src="assets/js/lib/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap-->
+    <script src="assets/js/lib/popper.min.js"></script>
+    <script src="assets/js/lib/bootstrap.bundle.min.js"></script>
+    
+    <!-- Ionicons -->
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <!-- Owl Carousel -->
+    <script src="assets/js/plugins/owl-carousel/owl.carousel.min.js"></script>
+    <!-- Base Js File -->
+    <script src="assets/js/base.js"></script>
+
+
+</body>
+
+</html>
+<script type="text/javascript">
+//localStorage.clear()
+setTimeout(function()
+{
+    let searchParams = new URLSearchParams(window.location.search)
+    event_id = searchParams.get('event_id')
+	var user_email = localStorage.getItem("user_email");
+    if(typeof user_email !== 'undefined' && user_email !== null)
+	{
+        get_event_details(event_id)
+	   	//window.location.replace("dashboard.html?event_id="+event_id);
+	}			
+	else
+	{
+		window.location.replace("login.html?event_id="+event_id);
+	}
+},1000);
+</script>
