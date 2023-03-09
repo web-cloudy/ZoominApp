@@ -1,21 +1,20 @@
-function getTimeRemaining(endtime) 
-{
+function getTimeRemaining(endtime) {
   const total = Date.parse(endtime) - Date.parse(new Date());
   const seconds = Math.floor((total / 1000) % 60);
   const minutes = Math.floor((total / 1000 / 60) % 60);
   const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
   const days = Math.floor(total / (1000 * 60 * 60 * 24));
-  
-  return {
-      total,
-      days,
-      hours,
-      minutes,
-      seconds
-  };
-  }
 
-  function initializeClock(id, endtime) {
+  return {
+    total,
+    days,
+    hours,
+    minutes,
+    seconds,
+  };
+}
+
+function initializeClock(id, endtime) {
   // const clock = document.getElementById(id);
   // const daysSpan = clock.querySelector('.days');
   // const hoursSpan = clock.querySelector('.hours');
@@ -23,41 +22,40 @@ function getTimeRemaining(endtime)
   // const secondsSpan = clock.querySelector('.seconds');
 
   function updateClock() {
-      const t = getTimeRemaining(endtime);
+    const t = getTimeRemaining(endtime);
 
-      // daysSpan.innerHTML = t.days;
-      // hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-      // minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-      // secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-      
-      if (t.total <= 0) {
+    // daysSpan.innerHTML = t.days;
+    // hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+    // minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+    // secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+    if (t.total <= 0) {
       clearInterval(timeinterval);
-      }
-      else
-      {
-       // return ('0' + t.seconds).slice(-2);
-      }
+    } else {
+      // return ('0' + t.seconds).slice(-2);
+    }
   }
 
   //updateClock();
   //const timeinterval = setInterval(updateClock, 1000);
-  }
-  function save_score_ajax()
-  {
-    let searchParams = new URLSearchParams(window.location.search)
-    event_id = searchParams.get('event_id')
-	  $.ajax({
-      type: "POST",
-      url: baseurl + 'Player/updateEventPlayerPoint',
-      data: 'points='+getItem("zoominbasketball_current_score")+'&user_id='+get_userid()+"&event_id="+event_id,
-      async:true,
-      success: function(html) {
-      },
-
-    });
-  }
-
-
+}
+function save_score_ajax() {
+  let searchParams = new URLSearchParams(window.location.search);
+  event_id = searchParams.get("event_id");
+  $.ajax({
+    type: "POST",
+    url: baseurl + "Player/updateEventPlayerPoint",
+    data:
+      "points=" +
+      getItem("zoominbasketball_current_score") +
+      "&user_id=" +
+      get_userid() +
+      "&event_id=" +
+      event_id,
+    async: true,
+    success: function (html) {},
+  });
+}
 
 function difference2Parts(milliseconds) {
   const secs = Math.floor(Math.abs(milliseconds) / 1000);
@@ -65,7 +63,7 @@ function difference2Parts(milliseconds) {
   const hours = Math.floor(mins / 60);
   const days = Math.floor(hours / 24);
   const millisecs = Math.floor(Math.abs(milliseconds)) % 1000;
-  const multiple = (term, n) => n !== 1 ? `${n} ${term}s` : `1 ${term}`;
+  const multiple = (term, n) => (n !== 1 ? `${n} ${term}s` : `1 ${term}`);
 
   return {
     days: days,
@@ -77,40 +75,44 @@ function difference2Parts(milliseconds) {
     secondsTotal: secs,
     milliSeconds: millisecs,
     get diffStr() {
-      return `${multiple(`day`, this.days)}, ${
-        multiple(`hour`, this.hours)}, ${
-        multiple(`minute`, this.minutes)} and ${
-        multiple(`second`, this.seconds)}`;
+      return `${multiple(`day`, this.days)}, ${multiple(
+        `hour`,
+        this.hours
+      )}, ${multiple(`minute`, this.minutes)} and ${multiple(
+        `second`,
+        this.seconds
+      )}`;
     },
     get diffStrMs() {
-      return `${this.diffStr.replace(` and`, `, `)} and ${
-        multiple(`millisecond`, this.milliSeconds)}`;
+      return `${this.diffStr.replace(` and`, `, `)} and ${multiple(
+        `millisecond`,
+        this.milliSeconds
+      )}`;
     },
   };
 }
 
-  function save_player_time()
-  {
-    let searchParams = new URLSearchParams(window.location.search)
-    event_id = searchParams.get('event_id')    
-    const diffs = difference2Parts(getItem("zoominbasketball_end_time") - getItem("zoominbasketball_start_time"));
-    second=diffs.secondsTotal;
-    $.ajax({
-      type: "POST",
-      url: baseurl + 'Player/updateEventPlayerTime',
-      data: 'second='+second+'&user_id='+get_userid()+"&event_id="+event_id,
-      async:true,
-      success: function(html) {
-      },
+function save_player_time() {
+  let searchParams = new URLSearchParams(window.location.search);
+  event_id = searchParams.get("event_id");
+  const diffs = difference2Parts(
+    getItem("zoominbasketball_end_time") -
+      getItem("zoominbasketball_start_time")
+  );
+  second = diffs.secondsTotal;
+  $.ajax({
+    type: "POST",
+    url: baseurl + "Player/updateEventPlayerTime",
+    data:
+      "second=" + second + "&user_id=" + get_userid() + "&event_id=" + event_id,
+    async: true,
+    success: function (html) {},
+  });
+}
 
-    });
-  }
-  
-  var now = new Date();
-  now.setMinutes(now.getMinutes() + localStorage.getItem("duration")); // timestamp
-  var deadline = endtime= new Date(now); // Date object
-  
-
+var now = new Date();
+now.setMinutes(now.getMinutes() + localStorage.getItem("duration")); // timestamp
+var deadline = (endtime = new Date(now)); // Date object
 
 this.createjs = this.createjs || {};
 
@@ -5731,7 +5733,6 @@ var s_bFocus = true;
 })(navigator.userAgent || navigator.vendor || window.opera);
 
 $(window).resize(function () {
-  
   sizeHandler();
 });
 
@@ -5855,8 +5856,8 @@ function sizeHandler() {
   }
 
   var multiplier = Math.min(h / CANVAS_HEIGHT, w / CANVAS_WIDTH);
-  multiplier=multiplier+"".split('.')
-  multiplier= parseFloat(multiplier[0]+'.'+multiplier[1]);
+  multiplier = multiplier + "".split(".");
+  multiplier = parseFloat(multiplier[0] + "." + multiplier[1]);
   s_iScaleFactor = multiplier;
   var destW = Math.round(CANVAS_WIDTH * multiplier);
   var destH = Math.round(CANVAS_HEIGHT * multiplier);
@@ -6655,7 +6656,7 @@ if (screenfull.isEnabled) {
     }
   });
 }
-var _Game_state=0;
+var _Game_state = 0;
 function CSpriteLibrary() {
   var _oLibSprites = {};
   var _oSpritesToLoad;
@@ -6664,7 +6665,7 @@ function CSpriteLibrary() {
   var _cbCompleted;
   var _cbTotalCompleted;
   var _cbOwner;
-  
+
   this.init = function (cbCompleted, cbTotalCompleted, cbOwner) {
     _oSpritesToLoad = {};
     _iNumSprites = 0;
@@ -7850,7 +7851,9 @@ function CPreloader() {
 
   this.attachSprites = function () {
     var oBg = new createjs.Shape();
-    oBg.graphics.beginFill("#f5f5f5").drawRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    oBg.graphics
+      .beginFill("#f5f5f5")
+      .drawRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     _oContainer.addChild(oBg);
 
     var oSprite = s_oSpriteLibrary.getSprite("200x200");
@@ -8150,7 +8153,10 @@ function CMain(oData) {
     s_oSpriteLibrary.addSprite("msg_box_big", "./sprites/msg_box_big.png");
     s_oSpriteLibrary.addSprite("but_credits", "./sprites/but_credits.png");
     s_oSpriteLibrary.addSprite("logo_ctl", "./sprites/logo_ctl.png");
-    s_oSpriteLibrary.addSprite("but_fullscreen","./sprites/but_fullscreen.png");
+    s_oSpriteLibrary.addSprite(
+      "but_fullscreen",
+      "./sprites/but_fullscreen.png"
+    );
     s_oSpriteLibrary.addSprite("bg_menu", "./sprites/bg_menu.jpg");
     s_oSpriteLibrary.addSprite("bg_game", "./sprites/bg_game.jpg");
     s_oSpriteLibrary.addSprite("but_no", "./sprites/but_no.png");
@@ -8203,33 +8209,33 @@ function CMain(oData) {
   this.gotoMenu = function () {
     _oMenu = new CMenu();
     _iState = STATE_MENU;
-    if(typeof timeinterval!=='undefined')
-    {
+    if (typeof timeinterval !== "undefined") {
       clearInterval(timeinterval);
     }
-    $('.time_bottom').addClass('hidden')
-        
-    stopSound('game_over')
-    $('#bg').css('background','linear-gradient(to bottom,#F8F8F8 50%,#f8f8f8 100%)')
-    playSound('soundtrack',1,true)
+    $(".time_bottom").addClass("hidden");
+
+    stopSound("game_over");
+    $("#bg").css(
+      "background",
+      "linear-gradient(to bottom,#F8F8F8 50%,#f8f8f8 100%)"
+    );
+    playSound("soundtrack", 1, true);
   };
 
-  this.gotoGame = function () 
-  {
-    if(addEventPlayer()==false)
-    {
-      this.gotoMenu();      
-    }
-    else
-    {
+  this.gotoGame = function () {
+    if (addEventPlayer() == false) {
+      this.gotoMenu();
+    } else {
       _oGame = new CGame(_oData);
-      $('#bg').css('background','linear-gradient(to bottom,#4f3a72 50%,#374470 100%)')
-      _iState = STATE_GAME;        
-      _Game_state=1;
+      $("#bg").css(
+        "background",
+        "linear-gradient(to bottom,#4f3a72 50%,#374470 100%)"
+      );
+      _iState = STATE_GAME;
+      _Game_state = 1;
     }
-    stopSound('soundtrack')
+    stopSound("soundtrack");
     $(s_oMain).trigger("start_session");
-    
   };
 
   this.gotoHelp = function () {
@@ -8574,24 +8580,21 @@ function CMenu() {
 }
 
 var s_oMenu = null;
-CInterface.prototype.getHighestScore =function()
-{
-  let searchParams = new URLSearchParams(window.location.search)
-  event_id = searchParams.get('event_id')
+CInterface.prototype.getHighestScore = function () {
+  let searchParams = new URLSearchParams(window.location.search);
+  event_id = searchParams.get("event_id");
 
   $.ajax({
     type: "POST",
-    url: baseurl + 'Player/getHighestPlayerPoint',
-    data: 'user_id='+get_userid()+'&event_id='+event_id,
-    async:true,
-    success: function(html) 
-    {
-      saveItem("Zoomin_basketball_top_score",html.trim())
-      this.setHighestScore(html.trim())
+    url: baseurl + "Player/getHighestPlayerPoint",
+    data: "user_id=" + get_userid() + "&event_id=" + event_id,
+    async: true,
+    success: function (html) {
+      saveItem("Zoomin_basketball_top_score", html.trim());
+      this.setHighestScore(html.trim());
     }.bind(this),
-
   });
-}
+};
 function CGame(oData) {
   var _bStartGame;
   var _bDisableEvents;
@@ -8651,49 +8654,62 @@ function CGame(oData) {
 
     _oBoard = new CBoard(_oGameContainer); // INIT BOARD AND HOOP
     var now = new Date();
-    now.setMinutes(now.getMinutes() + parseInt(localStorage.getItem("duration"))); // timestamp
+    now.setMinutes(
+      now.getMinutes() + parseInt(localStorage.getItem("duration"))
+    ); // timestamp
     deadline = new Date(now); // Date object
     var diffs = difference2Parts(Date.parse(deadline) - Date.parse(new Date()));
-    hor_second=diffs.secondsTotal;
-    
-    timeinterval= setInterval(() => {
-      remaing=getTimeRemaining(deadline)
-      const diffs = difference2Parts(Date.parse(deadline) - Date.parse(new Date()));
-      second=diffs.secondsTotal;
+    hor_second = diffs.secondsTotal;
+
+    timeinterval = setInterval(() => {
+      remaing = getTimeRemaining(deadline);
+      const diffs = difference2Parts(
+        Date.parse(deadline) - Date.parse(new Date())
+      );
+      second = diffs.secondsTotal;
       console.log(second);
-      if(remaing.hours>0)
-      {
-        $('.digital_timer').html(remaing.hours+':'+remaing.minutes+':'+('0' + remaing.seconds).slice(-2)).removeClass('hidden')
+      if (remaing.hours > 0) {
+        $(".digital_timer")
+          .html(
+            remaing.hours +
+              ":" +
+              remaing.minutes +
+              ":" +
+              ("0" + remaing.seconds).slice(-2)
+          )
+          .removeClass("hidden");
+      } else if (remaing.minutes <= 0) {
+        $(".digital_timer")
+          .html("0:" + ("0" + remaing.seconds).slice(-2))
+          .removeClass("hidden");
+      } else {
+        $(".digital_timer")
+          .html(remaing.minutes + ":" + ("0" + remaing.seconds).slice(-2))
+          .removeClass("hidden");
       }
-      else if(remaing.minutes<=0)
-      {
-        $('.digital_timer').html('0:'+('0' + remaing.seconds).slice(-2)).removeClass('hidden')
-      }
-      else
-      {
-        $('.digital_timer').html(remaing.minutes+':'+('0' + remaing.seconds).slice(-2)).removeClass('hidden')
-      }
-      if (second <=0) 
-      {
+      if (second <= 0) {
         clearInterval(timeinterval);
         _oBoard.setUpdate(false);
-        $('.time_bottom').addClass('hidden')
+        $(".time_bottom").addClass("hidden");
         this.gameOver();
       }
-      if (parseInt(second)>0 && parseInt(second) < parseInt(hor_second/1.25)) {
+      if (
+        parseInt(second) > 0 &&
+        parseInt(second) < parseInt(hor_second / 1.25)
+      ) {
         _oBoard.setBoardHorizontalMovement(true);
-  
+
         if (_oBoard.isUpdate() === false) {
           _oBoard.resetBoardMovement();
           _oBoard.setUpdate(true);
         }
       }
-  
-      if (parseInt(second) < parseInt(hor_second/2)) {
+
+      if (parseInt(second) < parseInt(hor_second / 2)) {
         _oBoard.setBoardVerticalMovement(true);
       }
     }, 1000);
-    
+
     this.initHoop();
     this.initScoreBonusText();
     this.initNewBestScoreText();
@@ -8836,7 +8852,7 @@ function CGame(oData) {
     _iScore = 0;
     _iBonus = NO_BONUS;
     _iPlayerLives = PLAYER_LIVES;
-    _iStrightSec = STRIGHT_SEC
+    _iStrightSec = STRIGHT_SEC;
     _iTotalScore = s_iTotalScore;
     _showBall = Show_BALL;
 
@@ -8987,7 +9003,7 @@ function CGame(oData) {
 
   this.updateScore = function () {
     // UPDATE TOTAL SCORE
-    
+
     _iTotalScore += _iScore;
     s_iTotalScore = _iTotalScore;
     saveItem("zoominbasketball_total_score", s_iTotalScore);
@@ -9009,27 +9025,24 @@ function CGame(oData) {
     _oInterface.refreshScoreText(_iScore);
 
     // SHOW A "NEW BEST SCORE" TEXT, IF NEEDED
-    
+
     if (_iScore > s_iBestScore) {
       this.showNewBestScore();
       s_iBestScore = _iScore;
       saveItem("zoominbasketball_best_score", s_iBestScore);
       //_oInterface.refreshBestScoreText();
       _bNewBestScore = true;
-  
     }
   };
 
   this.checkForBoardMovement = function () {
     // if (_iScore >= BOARD_HORIZONTAL_MOVEMENT_LIMIT) {
     //   _oBoard.setBoardHorizontalMovement(true);
-
     //   if (_oBoard.isUpdate() === false) {
     //     _oBoard.resetBoardMovement();
     //     _oBoard.setUpdate(true);
     //   }
     // }
-
     // if (_iScore >= BOARD_VERTICAL_MOVEMENT_LIMIT) {
     //   _oBoard.setBoardVerticalMovement(true);
     // }
@@ -9075,13 +9088,13 @@ function CGame(oData) {
         delete oScoreText;
       });
   };
-  
+
   this.gameOver = function () {
     _bStartGame = false;
     this.updateScore();
-    save_score_ajax()
+    save_score_ajax();
     _oInterface.gameOverFun(true);
-    
+
     if (_oEndPanel === null) {
       playSound("game_over", 1, false);
       stopSound("soundtrack");
@@ -9421,34 +9434,33 @@ function CGame(oData) {
       return false;
     }
   };
-  this.get_game_time= function()
-  {
-    timeinterval= setInterval(() => {
-      remaing=getTimeRemaining(deadline)
-      const diffs = difference2Parts(Date.parse(deadline) - Date.parse(new Date()));
-      second=diffs.secondsTotal;
-      if (second <0) 
-      {
+  this.get_game_time = function () {
+    timeinterval = setInterval(() => {
+      remaing = getTimeRemaining(deadline);
+      const diffs = difference2Parts(
+        Date.parse(deadline) - Date.parse(new Date())
+      );
+      second = diffs.secondsTotal;
+      if (second < 0) {
         clearInterval(timeinterval);
         _oBoard.setUpdate(false);
         this.gameOver();
       }
     }, 1000);
-  }
+  };
 
-  this.getStrightSec = function () 
-  {
-    t= getTimeRemaining(deadline);
-    _iStrightSec= parseInt(t.seconds)
-    
+  this.getStrightSec = function () {
+    t = getTimeRemaining(deadline);
+    _iStrightSec = parseInt(t.seconds);
+
     return _iStrightSec;
   };
   this.getLives = function () {
     return _iPlayerLives;
   };
-  this.getShowBall =function(){
+  this.getShowBall = function () {
     return _showBall;
-  }
+  };
 
   this.checkCollisionWithWalls = function () {
     var bCollide = false;
@@ -9715,7 +9727,7 @@ function CGame(oData) {
   BOARD_VERTICAL_MOVEMENT_LIMIT = oData.board_vertical_movement_limit;
   PLAYER_LIVES = oData.player_lives;
   Show_BALL = oData.show_ball;
-  STRIGHT_SEC=oData.Stright_sec;
+  STRIGHT_SEC = oData.Stright_sec;
   this._init();
 }
 
@@ -10212,9 +10224,7 @@ function CBoard(oParentContainer) {
     _oBoardContainer.addChild(_oBoardSprite);
     _oBoardContainer.x = _oStartPosition.x;
     _oBoardContainer.y = _oStartPosition.y;
-    
-    
-    
+
     if (_bDebugMode === true) {
       _oBoardSprite.alpha = 0.5;
     }
@@ -11152,7 +11162,7 @@ function CInterface(oParentContainer) {
     if (DISABLE_SOUND_MOBILE === false || s_bMobile === false) {
       var oSprite = s_oSpriteLibrary.getSprite("audio_icon");
       _pStartPosAudio = {
-        x: oSpriteExit.width / 2+20,
+        x: oSpriteExit.width / 2 + 20,
         y: _pStartPosExit.y,
       };
       _oAudioToggle = new CToggle(
@@ -11193,7 +11203,6 @@ function CInterface(oParentContainer) {
 
     if (_fRequestFullScreen && screenfull.isEnabled) {
       // oSprite = s_oSpriteLibrary.getSprite("but_fullscreen");
-
       // _oButFullscreen = new CToggle(
       //   _pStartPosFullscreen.x,
       //   _pStartPosFullscreen.y,
@@ -11244,7 +11253,7 @@ function CInterface(oParentContainer) {
       _oContainer,
       iX - iWidth / 2,
       iY - iHeight / 2,
-      iWidth*2,
+      iWidth * 2,
       iHeight,
       40,
       "center",
@@ -11289,14 +11298,14 @@ function CInterface(oParentContainer) {
 
     if (_oYourBestScoreText !== undefined) {
       _oYourBestScoreText.setY(_iBottomLinePos);
-      _oYourBestScoreText.setX(CANVAS_WIDTH/2);
+      _oYourBestScoreText.setX(CANVAS_WIDTH / 2);
     }
-    
+
     var oSpriteStar = s_oSpriteLibrary.getSprite("but_star");
-    _oStar = createBitmap(oSpriteStar,oSpriteStar.width,oSpriteStar.height);
-    
+    _oStar = createBitmap(oSpriteStar, oSpriteStar.width, oSpriteStar.height);
+
     var bounds = _oContainer.getBounds();
-    _oStar.x = CANVAS_WIDTH-(oSpriteStar.width/2)-10;
+    _oStar.x = CANVAS_WIDTH - oSpriteStar.width / 2 - 10;
     _oStar.y = 100;
     _oStar.regX = bounds.width / 2;
     _oStar.regY = bounds.height / 2;
@@ -11306,34 +11315,32 @@ function CInterface(oParentContainer) {
       _oPlayerLivesContainer.y = _iBottomLinePos_score - 10;
     }
   };
-  this.gameOverFun =function(val)
-  {
-    this.gameOver=val;
-  }
-  
-  this.setHighestScore=function(value)
-  {
-    if(this.gameOver==false)
-    {
-      _oYourBestScoreText.refreshText(TEXT_BEST + getItem("Zoomin_basketball_top_score"));
-      this.getHighestScore()
+  this.gameOverFun = function (val) {
+    this.gameOver = val;
+  };
+
+  this.setHighestScore = function (value) {
+    if (this.gameOver == false) {
+      _oYourBestScoreText.refreshText(
+        TEXT_BEST + getItem("Zoomin_basketball_top_score")
+      );
+      this.getHighestScore();
     }
-  }
-  this.getHighestScore()
-  this.refreshScoreText = function (iValue) 
-  {
-    
+  };
+  this.getHighestScore();
+  this.refreshScoreText = function (iValue) {
     saveItem("zoominbasketball_current_score", iValue);
     _oScoreText.refreshText(TEXT_SCORE + iValue);
     _oScoreText.setY(_iBottomLinePos_score);
-    save_score_ajax()
+    save_score_ajax();
   };
-  
 
   this.refreshBestScoreText = function () {
-    _oYourBestScoreText.refreshText(TEXT_BEST + getItem("Zoomin_basketball_top_score"));
+    _oYourBestScoreText.refreshText(
+      TEXT_BEST + getItem("Zoomin_basketball_top_score")
+    );
     _oYourBestScoreText.setY(_iBottomLinePos);
-};
+  };
 
   this.unload = function () {
     if (DISABLE_SOUND_MOBILE === false || s_bMobile === false) {
@@ -11357,19 +11364,17 @@ function CInterface(oParentContainer) {
 
   this.updatePlayerLives = function () {
     var iValue = s_oGame.getLives();
-    var ball_count =s_oGame.getShowBall();
+    var ball_count = s_oGame.getShowBall();
     var iValues = s_oGame.getStrightSec();
     for (var i = 0; i < iValue; i++) {
       var oSprite = s_oSpriteLibrary.getSprite("player_life");
       var oPlayerLife = createBitmap(oSprite, oSprite.width, oSprite.height);
       oPlayerLife.x = PLAYER_LIFE_SIZE * 1.1 * i;
-      if(i<ball_count)
-      {
-      _oPlayerLivesContainer.addChild(oPlayerLife);
+      if (i < ball_count) {
+        _oPlayerLivesContainer.addChild(oPlayerLife);
       }
       _aPlayerLives.push(oPlayerLife);
     }
-    
 
     if (iValue === 0) {
       return;
@@ -11406,9 +11411,8 @@ function CInterface(oParentContainer) {
   this._onAudioToggle = function () {
     Howler.mute(s_bAudioActive);
     s_bAudioActive = !s_bAudioActive;
-    if(_Game_state>0)
-    {
-      stopSound('soundtrack')
+    if (_Game_state > 0) {
+      stopSound("soundtrack");
     }
   };
 
@@ -11452,7 +11456,7 @@ function CCreditsPanel() {
 
   this._init = function () {
     var oSpriteMsgBox = s_oSpriteLibrary.getSprite("msg_box");
-    
+
     _oFade = new createjs.Shape();
     _oFade.graphics
       .beginFill("black")
@@ -11478,7 +11482,6 @@ function CCreditsPanel() {
     _oBg.y = CANVAS_HEIGHT_HALF;
     _oContainer.addChild(_oBg);
 
-    
     _oHitArea = new createjs.Shape();
     _oHitArea.graphics
       .beginFill("#0f0f0f")
@@ -11499,7 +11502,7 @@ function CCreditsPanel() {
       oSprite,
       _oContainer
     );
-    
+
     _oButExit.addEventListener(ON_MOUSE_UP, this.unload, this);
 
     var iX = CANVAS_WIDTH_HALF;
@@ -11577,7 +11580,6 @@ function CCreditsPanel() {
         s_oMenu.exitFromCredits();
       });
   };
-
 
   this._init();
 }
@@ -11780,29 +11782,31 @@ function CHelpPanel() {
     var iWidth = 450;
     var iHeight = 100;
     var now = new Date();
-    now.setMinutes(now.getMinutes() + parseInt(localStorage.getItem("duration"))); // timestamp
+    now.setMinutes(
+      now.getMinutes() + parseInt(localStorage.getItem("duration"))
+    ); // timestamp
     deadline = new Date(now); // Date object
     remaing = getTimeRemaining(deadline);
-    console.log(remaing)
-    if(remaing.hours>0)
-    {
-      text= remaing.hours+':'+remaing.minutes+':'+('0' + remaing.seconds).slice(-2)
+    console.log(remaing);
+    if (remaing.hours > 0) {
+      text =
+        remaing.hours +
+        ":" +
+        remaing.minutes +
+        ":" +
+        ("0" + remaing.seconds).slice(-2);
+    } else if (remaing.minutes <= 0) {
+      text = "0:0:" + ("0" + remaing.seconds).slice(-2);
+    } else {
+      text = "0:" + remaing.minutes + ":" + ("0" + remaing.seconds).slice(-2);
     }
-    else if(remaing.minutes<=0)
-    {
-      text= '0:0:'+('0' + remaing.seconds).slice(-2)
-    }
-    else
-    {
-      text='0:'+remaing.minutes+':'+('0' + remaing.seconds).slice(-2)
-    }
-    
+
     new CTLText(
       _oPanelContainer,
       iX - iWidth / 2,
       iY - iHeight / 5,
       iWidth,
-      iHeight*3,
+      iHeight * 3,
       60,
       "center",
       PRIMARY_FONT_COLOUR,
@@ -11810,14 +11814,12 @@ function CHelpPanel() {
       1,
       2,
       2,
-      TEXT_HELP1+text,
+      TEXT_HELP1 + text,
       true,
       true,
       true,
       false
     );
-
-    
   };
 
   this.unload = function () {
@@ -11843,56 +11845,71 @@ function CHelpPanel() {
     createjs.Tween.removeAllTweens();
     this.unload();
     s_oGame._onExitHelp();
-    start_timer()
+    start_timer();
   };
 
   this._init();
 }
-function start_timer()
-{
-    saveItem("zoominbasketball_start_time", Date.parse(new Date()));
-    var now = new Date();
-    now.setMinutes(now.getMinutes() + parseInt(localStorage.getItem("duration"))); // timestamp
-    deadline = new Date(now); // Date object
+function start_timer() {
+  saveItem("zoominbasketball_start_time", Date.parse(new Date()));
+  var now = new Date();
+  now.setMinutes(now.getMinutes() + parseInt(localStorage.getItem("duration"))); // timestamp
+  deadline = new Date(now); // Date object
 
-    remaing=getTimeRemaining(deadline)
-    if(remaing.hours>0)
-    {
-      $('.digital_timer').html(remaing.hours+':'+remaing.minutes+':'+('0' + remaing.seconds).slice(-2)).removeClass('hidden')
-    }
-    else if(remaing.minutes<=0)
-    {
-      $('.digital_timer').html('0:'+('0' + remaing.seconds).slice(-2)).removeClass('hidden')
-    }
-    else
-    {
-      $('.digital_timer').html(remaing.minutes+':'+('0' + remaing.seconds).slice(-2)).removeClass('hidden')
-    }
-    $('.time_bottom').removeClass('hidden')
-    $('.time_bottom').css('bottom',($('#bg').height()-$('#canvas').height())/2+($('.digital_timer').height())/2)
-    $('.digital_timer').css('min-width',$('.digital_timer').width()-5)
-    $('.time_bottom').css('left',parseFloat($('#canvas').css('left'))+$('#canvas').width()-$('.digital_timer').width()-$('.timer').height())
-    $('.timer').circularCountDown({
-      size: 31,
-      borderSize: 5,
-      colorCircle: '#fd6beb',
-      background: '#784ebf',
-      fontFamily: 'sans-serif',
-      fontColor: '#0000',
-      fontSize: 14,
-      delayToFadeIn: 0,
-      delayToFadeOut: 0,
-      reverseLoading: true,
-      reverseRotation: true,
-      duration: {
-          hours: remaing.hours,
-          minutes: remaing.minutes,
-          seconds: remaing.seconds
-      },
-      beforeStart: function(){},
-      end: function(){}
-      });
-    
+  remaing = getTimeRemaining(deadline);
+  if (remaing.hours > 0) {
+    $(".digital_timer")
+      .html(
+        remaing.hours +
+          ":" +
+          remaing.minutes +
+          ":" +
+          ("0" + remaing.seconds).slice(-2)
+      )
+      .removeClass("hidden");
+  } else if (remaing.minutes <= 0) {
+    $(".digital_timer")
+      .html("0:" + ("0" + remaing.seconds).slice(-2))
+      .removeClass("hidden");
+  } else {
+    $(".digital_timer")
+      .html(remaing.minutes + ":" + ("0" + remaing.seconds).slice(-2))
+      .removeClass("hidden");
+  }
+  $(".time_bottom").removeClass("hidden");
+  $(".time_bottom").css(
+    "bottom",
+    ($("#bg").height() - $("#canvas").height()) / 2 +
+      $(".digital_timer").height() / 2
+  );
+  $(".digital_timer").css("min-width", $(".digital_timer").width() - 5);
+  $(".time_bottom").css(
+    "left",
+    parseFloat($("#canvas").css("left")) +
+      $("#canvas").width() -
+      $(".digital_timer").width() -
+      $(".timer").height()
+  );
+  $(".timer").circularCountDown({
+    size: 31,
+    borderSize: 5,
+    colorCircle: "#fd6beb",
+    background: "#784ebf",
+    fontFamily: "sans-serif",
+    fontColor: "#0000",
+    fontSize: 14,
+    delayToFadeIn: 0,
+    delayToFadeOut: 0,
+    reverseLoading: true,
+    reverseRotation: true,
+    duration: {
+      hours: remaing.hours,
+      minutes: remaing.minutes,
+      seconds: remaing.seconds,
+    },
+    beforeStart: function () {},
+    end: function () {},
+  });
 }
 function CEndPanel(iScore) {
   var _oContainer;
@@ -11903,6 +11920,10 @@ function CEndPanel(iScore) {
   var _oInterface;
 
   var _pStartPanelPos;
+  console.log("end-----------?", iScore);
+  window.location.replace(
+    "http://mobile.zoomingaming.com/?event_id=" + event_id + "&&play_flag=true"
+  );
 
   this._init = function (iScore) {
     _oContainer = new createjs.Container();
@@ -12053,9 +12074,9 @@ function CEndPanel(iScore) {
   this._onRestart = function () {
     this.unload();
     s_oGame.restart();
-    start_timer()
-    stopSound('game_over')
-    _oInterface.gameOverFun(false)
+    start_timer();
+    stopSound("game_over");
+    _oInterface.gameOverFun(false);
   };
 
   s_oEndPanel = this;
