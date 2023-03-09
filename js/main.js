@@ -8692,6 +8692,11 @@ function CGame(oData) {
         _oBoard.setUpdate(false);
         $(".time_bottom").addClass("hidden");
         this.gameOver();
+        setTimeout(function () {
+          window.location.replace(
+            "http://localhost:19006/?event_id=" + event_id + "&&play_flag=true"
+          );
+        }, 2000);
       }
       if (
         parseInt(second) > 0 &&
