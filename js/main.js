@@ -8694,7 +8694,9 @@ function CGame(oData) {
         this.gameOver();
         setTimeout(function () {
           window.location.replace(
-            "http://localhost:19006/?event_id=" + event_id + "&&play_flag=true"
+            "https://mobile.zoomingaming.com/?event_id=" +
+              event_id +
+              "&&play_flag=true"
           );
         }, 2000);
       }
