@@ -1,5 +1,6 @@
 // baseurl = "https://saviour.earth/ZoomIn/api/index.php/";
-baseurl = "http://localhost:8080/ZoomIn/api/index.php/";
+// baseurl = "http://localhost:8080/ZoomIn/api/index.php/";
+baseurl = "https://app.zoomingaming.com/ZoomIn/api/index.php/";
 //baseurl='http://localhost/myproject/score/api/index.php/'
 api_url = "https://play.zoomingaming.com/api/";
 // api_url = "http://localhost:3000/api/";
